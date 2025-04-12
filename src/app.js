@@ -3,21 +3,9 @@ const express = require("express");
 const app = express();
 
 
-app.get("/user",(req,res)=>{
+app.get("/user/:userId/:name/:password",(req,res)=>{
+    console.log(req.params);
     res.send({firstname:"shikhar" , lastname:"Prasad"});
-});
-
-app.post("/user",(req,res)=>{
-    // console.log("dave data to the database ");
-    res.send("Data successfully saved in  the database");
-});
-
-app.delete("/user",(req,res)=>{
-    res.send("deleted successfully ");
-
-});
-app.use("/test",(req,res)=>{
-    res.send("hello from the server");
 });
 
 
