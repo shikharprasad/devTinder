@@ -12,6 +12,7 @@ const validateSignUpData = (req) => {
     else if(!validator.isStrongPassword(password)){
         throw new Error("Enter a strong password: ");
     } 
+
     
 
 };
@@ -24,4 +25,18 @@ const validateEditProfileData = (req)=>{
     return isEditAllowed;
 };
 
-module.exports = {validateSignUpData,validateEditProfileData};
+const validatePasswordChange = (oldPassword, newPassword) => {
+    if (!oldPassword || !newPassword) {
+        throw new Error("Old password and new password are required");
+    }
+
+    if (oldPassword === newPassword) {
+        throw new Error("New password cannot be the same as the old password");
+    }
+
+    if (!validator.isStrongPassword(newPassword)) {
+        throw new Error("New password must be strong (minLength: 8, mix of characters)");
+    }
+};
+
+module.exports = {validateSignUpData,validateEditProfileData,validatePasswordChange};
